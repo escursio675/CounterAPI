@@ -13,7 +13,7 @@ const siteSchema = new mongoose.Schema(
         apiKey:{
             type: String,
             required: true,
-            unique,
+            unique: true,
             default: () => crypto.randomBytes(24).toString('hex')
         },
 

@@ -1,4 +1,4 @@
-import Site from "../models/Site.js";
+import Site from "../models/site.js";
 
 export const requireSiteAPIKey = async(req, res, next) =>{
     try{
@@ -22,10 +22,12 @@ export const requireSiteAPIKey = async(req, res, next) =>{
     }
 };
 
-export const requireAdminAPIKey = async(req, res, next) =>{
+export const requireAdminAPIKey = (req, res, next) =>{
     const adminKey = req.header('x-admin-key');
 
     if(!adminKey || adminKey !== process.env.ADMIN_API_KEY){
         return res.status(401).json({error: "Invalid or missing admin key"});
     }
+
+    next();
 }

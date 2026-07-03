@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import site from "./site";
+import site from "./site.js";
 
 const counterSchema= new mongoose.Schema(
     {
