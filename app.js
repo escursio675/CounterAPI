@@ -5,9 +5,13 @@ import counterRoutes from './routes/counters.js';
 
 import { errorHandler, notFound } from './middleware/errorHandler.js';
 
+import { apiLimiter } from './middleware/rateLimiter.js';
+
 const app = express();
 
 app.use(express.json());
+
+app.use(apiLimiter);
 
 app.use('/api/sites', siteRoutes);
 app.use('/api/counters', counterRoutes);
