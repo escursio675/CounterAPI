@@ -1,10 +1,30 @@
-import axios from 'axios';
+import axios, { type AxiosResponse } from 'axios';
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL: string = import.meta.env.VITE_API_URL;
+
+export interface Site {
+  _id: string;
+  name: string;
+  apiKey: string;
+  allowedOrigins: string[];
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Counter {
+  _id: string;
+  site: string;
+  name: string;
+  value: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 
 //SITES
 
-export const createSite = (adminKey, name) =>{
+export const createSite = (adminKey: string, name: string): Promise<AxiosResponse<Site>> =>{
     return axios.post(`${BASE_URL}/api/sites`,
         {
             name
@@ -15,7 +35,7 @@ export const createSite = (adminKey, name) =>{
     );
 };
 
-export const listSites = (adminKey) =>{
+export const listSites = (adminKey: string): Promise<AxiosResponse<Site[]>> =>{
     return axios.get(`${BASE_URL}/api/sites`,
         {
             headers: {'x-admin-key': adminKey}
@@ -23,7 +43,7 @@ export const listSites = (adminKey) =>{
     );
 };
 
-export const rotateApiKey = (adminKey, siteId) =>{
+export const rotateApiKey = (adminKey: string, siteId: string): Promise<AxiosResponse<Site>> =>{
     return axios.patch(`${BASE_URL}/api/sites/${siteId}/rotate-key`,
         {},
         {
@@ -32,7 +52,7 @@ export const rotateApiKey = (adminKey, siteId) =>{
     );
 };
 
-export const deleteSite = (adminKey, siteId) =>{
+export const deleteSite = (adminKey: string, siteId: string): Promise<AxiosResponse<{message: string}>> =>{
     return axios.delete(`${BASE_URL}/api/sites/${siteId}`,
         {
             headers: {'x-admin-key': adminKey}
@@ -42,7 +62,7 @@ export const deleteSite = (adminKey, siteId) =>{
 
 //Counters
 
-export const createCounter = (apiKey, name) =>{
+export const createCounter = (apiKey: string, name: string): Promise<AxiosResponse<Counter>> =>{
     return axios.post(`${BASE_URL}/api/counters`,
         {
             name
@@ -53,7 +73,7 @@ export const createCounter = (apiKey, name) =>{
     );
 };
 
-export const listCounters = (apiKey) =>{
+export const listCounters = (apiKey: string): Promise<AxiosResponse<Counter[]>> =>{
     return axios.get(`${BASE_URL}/api/counters`,
         {
             headers: {'x-api-key': apiKey}
@@ -61,7 +81,7 @@ export const listCounters = (apiKey) =>{
     );
 };
 
-export const getCounter = (apiKey, name) =>{
+export const getCounter = (apiKey: string, name: string): Promise<AxiosResponse<Counter>> =>{
     return axios.get(`${BASE_URL}/api/counters/${name}`,
         {
             headers: {'x-api-key': apiKey}
@@ -69,7 +89,7 @@ export const getCounter = (apiKey, name) =>{
     )
 };
 
-export const incrementCounter = (apiKey, name, by = 1) =>{
+export const incrementCounter = (apiKey: string, name: string, by = 1): Promise<AxiosResponse<Counter>> =>{
     return axios.patch(`${BASE_URL}/api/counters/${name}/increment`,
         {
             by
@@ -80,7 +100,7 @@ export const incrementCounter = (apiKey, name, by = 1) =>{
     );
 };
 
-export const decrementCounter = (apiKey, name, by = 1) => {
+export const decrementCounter = (apiKey: string, name: string, by = 1): Promise<AxiosResponse<Counter>> => {
     return axios.patch(`${BASE_URL}/api/counters/${name}/decrement`,
         {
             by
@@ -91,7 +111,7 @@ export const decrementCounter = (apiKey, name, by = 1) => {
     );
 };
 
-export const resetCounter = (apiKey, name) =>{
+export const resetCounter = (apiKey: string, name: string): Promise<AxiosResponse<Counter>> =>{
     return axios.patch(`${BASE_URL}/api/counters/${name}/reset`,
         {},
         {
@@ -100,7 +120,7 @@ export const resetCounter = (apiKey, name) =>{
     );
 };
 
-export const deleteCounter = (apiKey, name) =>{
+export const deleteCounter = (apiKey: string, name: string): Promise<AxiosResponse<{message: string}>> =>{
     return axios.delete(`${BASE_URL}/api/counters/${name}`,
         {
             headers: {'x-api-key': apiKey}
