@@ -21,9 +21,12 @@ export default function AdminKeyInput({ onSubmit }: AdminKeyInputProps) {
                 value={key}
                 onChange={(e) =>setKey(e.target.value)}
                 placeholder="Enter Admin Key"
+                className="border-2 rounded-md m-2"
                 />
 
-                <button type="submit">Connect</button>
+                <button type="submit"
+                className="bg-[#a3a3a3] rounded-md p-2 text-black"
+                >Connect</button>
 
             </form>
         </div>

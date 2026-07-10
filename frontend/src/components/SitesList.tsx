@@ -59,7 +59,7 @@ export default function SitesList({ adminKey, onSelectSite }: SitesListProps){
 
 
     return(
-        <div>
+        <div className="text-center flex flex-col gap-7">
             <h2>Your Sites</h2>
 
             <form onSubmit={ handleCreateSites }>
@@ -68,17 +68,25 @@ export default function SitesList({ adminKey, onSelectSite }: SitesListProps){
                 value={newSiteName}
                 placeholder="Your new Site Name"
                 onChange={(e) => setNewSiteName(e.target.value)}
+                className="border-2 rounded-md m-2"
                 />
 
-                <button type="submit">Create Site</button>
+                <button type="submit"
+                className="bg-[#a3a3a3] rounded-md p-2 text-black">
+                    Create Site
+                </button>
 
             </form>
 
-            <ul>
+            <ul className="flex flex-col gap-15">
                 {sites.map((site) =>(
-                    <li key={site._id}>
+                    <li key={site._id}
+                    className="flex flex-col gap-1">
                         {site.name}
-                        <button onClick={() => onSelectSite(site)}>Manage Counters</button>
+                        <button onClick={() => onSelectSite(site)}
+                        className="bg-[#a3a3a3] rounded-md p-2 text-black">
+                            Manage Counters
+                        </button>
                     </li>
                 ))}
 

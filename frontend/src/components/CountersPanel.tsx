@@ -113,9 +113,9 @@ export default function CountersPanel({ site }: CountersPanelProps) {
         return <div>Error: {error}</div>
 
     return(
-        <div>
+        <div className="text-center flex flex-col gap-5">
             
-            <h2>Counters for {site.name}</h2>
+            <h2 className="underline">Counters for {site.name}</h2>
 
             <form onSubmit={handleCreateCounter}>
 
@@ -123,23 +123,41 @@ export default function CountersPanel({ site }: CountersPanelProps) {
                 value={newCounterName}
                 onChange={(e) => setNewCounterName(e.target.value)}
                 placeholder="eg, homepage-visits"
+                className="border-2 rounded-md m-2"
                 />
 
-                <button type="submit">Create Counter</button>
+                <button type="submit"
+                className="bg-[#a3a3a3] rounded-md p-2 text-black">
+                    Create Counter
+                </button>
 
             </form>
 
 
-            <ul>
+            <ul className="flex flex-col items-center justify-center gap-5
+            mb-15">
                 {
                     counters.map((counter) =>(
-                        <li key={counter._id}>
+                        <li key={counter._id}
+                        className="flex gap-2">
                             {counter.name}: {counter.value}
 
-                            <button onClick={() => handleIncrement}>+1</button>
-                            <button onClick={() => handleDecrement}>-1</button>
-                            <button onClick={() => handleReset}>Reset</button>
-                            <button onClick={() => handleDelete}>Delete</button>
+                            <button onClick={() => handleIncrement(counter.name)}
+                            className="bg-[#a3a3a3] rounded-md p-2 text-black">
+                                +1
+                            </button>
+                            <button onClick={() => handleDecrement(counter.name)}
+                            className="bg-[#a3a3a3] rounded-md p-2 text-black">
+                                -1
+                            </button>
+                            <button onClick={() => handleReset(counter.name)}
+                            className="bg-[#a3a3a3] rounded-md p-2 text-black">
+                                Reset
+                            </button>
+                            <button onClick={() => handleDelete(counter.name)}
+                            className="bg-[#a3a3a3] rounded-md p-2 text-black">
+                                Delete
+                            </button>
                             
                         </li>
                     ))
