@@ -22,7 +22,7 @@ export default function SitesList({ adminKey, onSelectSite }: SitesListProps){
             setSites(response.data);
         }
         catch(err){
-            setError("Sites fetch failed - check your admind key");
+            setError("Sites fetch failed - check your admin key");
             console.log(err);
         }
         finally{

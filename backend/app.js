@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 
 import siteRoutes from './routes/sites.js';
 import counterRoutes from './routes/counters.js';
