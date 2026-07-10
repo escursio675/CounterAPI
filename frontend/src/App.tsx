@@ -7,7 +7,7 @@ import type { Site } from "./api/client";
 export default function App(){
 
     const [adminKey, setAdminKey] = useState("");
-    const [selectedSite, setSelectedSites] = useState<Site | null>(null);
+    const [selectedSite, setSelectedSite] = useState<Site | null>(null);
 
     return(
         <div>
@@ -18,7 +18,7 @@ export default function App(){
 
                 Admin Key Successfully Set
 
-                <SitesList adminKey={adminKey} onSelectSite={(site) => setSelectedSites(site)} />
+                <SitesList adminKey={adminKey} onSelectSite={(site) => setSelectedSite(site)} />
 
                 </div>
             )
