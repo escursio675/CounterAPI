@@ -82,7 +82,8 @@ export default function SitesList({ adminKey, onSelectSite }: SitesListProps){
                 {sites.map((site) =>(
                     <li key={site._id}
                     className="flex flex-col gap-1">
-                        {site.name}
+                        <p>{site.name}</p>
+                        <p>{site.apiKey}</p>
                         <button onClick={() => onSelectSite(site)}
                         className="bg-[#a3a3a3] rounded-md p-2 text-black">
                             Manage Counters
